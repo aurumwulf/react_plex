@@ -16,10 +16,10 @@ class Movies extends React.Component {
         <h1>Movies</h1>
         <div role="list" className="ui list">
           {movies.map(m => (
-            <div role="listitem" className="item">
+            <div key={m.id} role="listitem" className="item">
               <i aria-hidden="true" className="marker icon" />
-              <div key={m.id} className="content">
-                <Link className="header" to={`/movie/${m.id}`}>
+              <div className="content">
+                <Link className="header" to={`/movies/${m.id}`}>
                   {m.title}
                 </Link>
                 <div className="description">Directed by {m.director}</div>
