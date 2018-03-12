@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
+import NoMatch from './components/NoMatch';
 
-const App = () => <Route exact path="/" component={Home} />;
+const App = () => (
+  <div>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route component={NoMatch} />
+    </Switch>
+  </div>
+);
 
 export default App;
