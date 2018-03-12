@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
+import Movies from './components/Movies';
 import NoMatch from './components/NoMatch';
 
 const App = () => (
-  <div>
-    <NavBar />
+  <div className="ui grid">
+    <div className="four wide column">
+      <NavBar />
+    </div>
     <Switch>
-      <Route exact path="/" component={Home} />
+      <div className="ui center aligned container">
+        <Route exact path="/" component={Home} />
+        <Route exact path="/movies" component={Movies} />
+      </div>
       <Route component={NoMatch} />
     </Switch>
   </div>
