@@ -13,11 +13,14 @@ class Movie extends React.Component {
   render() {
     let { movie: { title, director, producer, genre } } = this.state;
     return (
-      <div>
+      <div className="ui center aligned container">
         <h1>{title}</h1>
-        <h3>{director}</h3>
-        <h3>{producer}</h3>
-        <h3>{genre}</h3>
+        <div className="ui divider" />
+        <div className="ui left aligned container">
+          <h4>Director - {director}</h4>
+          <h4>Producer - {producer}</h4>
+          <h4>Genre - {genre}</h4>
+        </div>
       </div>
     );
   }
