@@ -19,12 +19,18 @@ class Movie extends React.Component {
 
   submit = movie => {
     axios
-      .put(`/api/movies/${this.props.match.params.id}`, { movie })
-      .then(res => this.setState({ movie: res.data, edit: false }));
+      .put(`/api/movies/${this.props.match.params.id}`, {
+        movie,
+      })
+      .then(res =>
+        this.setState({ movie: res.data, edit: false }),
+      );
   };
 
   show() {
-    let { movie: { title, director, producer, genre } } = this.state;
+    let {
+      movie: { title, director, producer, genre },
+    } = this.state;
     return (
       <div className="ui center aligned container">
         <h1>{title}</h1>
@@ -40,26 +46,34 @@ class Movie extends React.Component {
   }
 
   edit() {
-    return <Form {...this.state.movie} submit={this.submit} />;
+    return (
+      <Form {...this.state.movie} submit={this.submit} />
+    );
   }
 
-  // delete = () => {
-  //   axios
-  //     .delete(`/api/movies/${this.props.match.params.id}`)
-  //     .then(res => this.setState({ movie: res.data }));
-  // };
+  delete = () => {
+    axios
+      .delete(`/api/movies/${this.props.match.params.id}`)
+      .then(res => this.setState({ movie: res.data }));
+  };
 
   render() {
     let { edit } = this.state;
     return (
       <div className="ui center aligned container">
         {edit ? this.edit() : this.show()}
-        <button className="ui button" onClick={this.toggleEdit}>
+        <button
+          className="ui button"
+          onClick={this.toggleEdit}>
           {edit ? 'Cancel' : 'Edit'}
         </button>
-        {/* <button className="ui red button" onClick={this.delete()}>
+        <button
+          className="ui red button"
+          onClick={() => {
+            this.delete();
+          }}>
           Delete
-        </button> */}
+        </button>
       </div>
     );
   }
