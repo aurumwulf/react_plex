@@ -4,6 +4,10 @@ class Form extends React.Component {
   defaultValues = { title: '', director: '', producer: '', genre: '' };
   state = { ...this.defaultValues };
 
+  componentDidMount() {
+    if (this.props.id) this.setState({ ...this.props });
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     let movie = { ...this.state };
@@ -20,6 +24,7 @@ class Form extends React.Component {
     let { title, director, producer, genre } = this.state;
     return (
       <form className="ui form" onSubmit={this.handleSubmit}>
+        <h1>Add/Edit Form</h1>
         <div className="field">
           <input
             id="title"
@@ -54,6 +59,7 @@ class Form extends React.Component {
           />
         </div>
         <button className="ui button">Submit</button>
+        <div className="ui divider" />
       </form>
     );
   }
