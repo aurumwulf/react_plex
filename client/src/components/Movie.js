@@ -43,6 +43,12 @@ class Movie extends React.Component {
     return <Form {...this.state.movie} submit={this.submit} />;
   }
 
+  // delete = () => {
+  //   axios
+  //     .delete(`/api/movies/${this.props.match.params.id}`)
+  //     .then(res => this.setState({ movie: res.data }));
+  // };
+
   render() {
     let { edit } = this.state;
     return (
@@ -51,6 +57,9 @@ class Movie extends React.Component {
         <button className="ui button" onClick={this.toggleEdit}>
           {edit ? 'Cancel' : 'Edit'}
         </button>
+        {/* <button className="ui red button" onClick={this.delete()}>
+          Delete
+        </button> */}
       </div>
     );
   }
