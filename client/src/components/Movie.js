@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import { Route, Redirect } from 'react-router-dom';
 import Form from './Form';
 
 class Movie extends React.Component {
-  state = { movie: [], edit: false };
+  state = { movie: [], edit: false, redirect: false };
 
   componentDidMount() {
     axios
@@ -23,7 +24,10 @@ class Movie extends React.Component {
         movie,
       })
       .then(res =>
-        this.setState({ movie: res.data, edit: false }),
+        this.setState({
+          movie: res.data,
+          edit: false,
+        }),
       );
   };
 
@@ -54,11 +58,14 @@ class Movie extends React.Component {
   delete = () => {
     axios
       .delete(`/api/movies/${this.props.match.params.id}`)
-      .then(res => this.setState({ movie: res.data }));
+      .then(res =>
+        this.setState({ movie: res.data, redirect: true }),
+      );
   };
 
   render() {
-    let { edit } = this.state;
+    let { edit, redirect } = this.state;
+
     return (
       <div className="ui center aligned container">
         {edit ? this.edit() : this.show()}
@@ -74,6 +81,7 @@ class Movie extends React.Component {
           }}>
           Delete
         </button>
+        {redirect && <Redirect to="/movies" />}
       </div>
     );
   }
